@@ -1,0 +1,34 @@
+const express = require('express');
+const passport = require('passport');
+const cors = require('cors');
+const authRoute = require('./routes/auth');
+require('./passport');
+//require('dotenv').config();
+const cookieSession = require('cookie-session');
+
+const app = express();
+
+app.use(cookieSession(
+    {
+        name: "sessionn",
+        keys: ["jayS"],
+        maxAge: 24*60*60*100
+    }
+));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(express.json());
+app.use(cors(
+    {
+        origin: "http://localhost:3000",
+        methods: "GET,POST,PUT,DELETE",
+        credentials: true,
+    }
+));
+
+app.use("/auth", authRoute);
+
+const PORT = 3001;
+app.listen(PORT,console.log(`server is listening on port ${PORT}`));
