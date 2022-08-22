@@ -2,6 +2,8 @@ const express = require('express');
 const passport = require('passport');
 const cors = require('cors');
 const authRoute = require('./routes/auth');
+const signupRoute = require('./routes/signup');
+const signinRoute = require('./routes/signin');
 require('./passport');
 //require('dotenv').config();
 const cookieSession = require('cookie-session');
@@ -29,6 +31,8 @@ app.use(cors(
 ));
 
 app.use("/auth", authRoute);
+app.use("/signup", signupRoute);
+app.use("/signin", signinRoute);
 
 const PORT = 3001;
 app.listen(PORT,console.log(`server is listening on port ${PORT}`));
