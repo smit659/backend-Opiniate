@@ -6,6 +6,8 @@ const signupRoute = require('./routes/signup');
 const signinRoute = require('./routes/signin');
 const userOpinionsRoute = require('./routes/userOpinions');
 const giveOpinionListRoute = require('./routes/giveOpinionList');
+const incomingRoute = require('./routes/incoming');
+const getIncomingRequestRoute = require('./routes/getIncomingRequest')
 require('./passport');
 //require('dotenv').config();
 const cookieSession = require('cookie-session');
@@ -37,6 +39,9 @@ app.use("/signup", signupRoute);
 app.use("/signin", signinRoute);
 app.use("/userOpinions",userOpinionsRoute);
 app.use("/giveOpinionList",giveOpinionListRoute);
+app.use("/incoming",incomingRoute);
+app.use("/getIncomingRequest/",getIncomingRequestRoute);
+
 
 const PORT = 3001;
 app.listen(PORT,console.log(`server is listening on port ${PORT}`));

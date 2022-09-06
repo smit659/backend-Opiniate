@@ -8,6 +8,9 @@ const schema = new mongoose.Schema({
     password:{type:String},
     avatar:{type:String},
     location:{type:String},
+    incoming:[String],
+    following:[String],
+    followers:[String],
     bio:{type:String}
     // cpassword:{type:String,required:true}
     });
