@@ -8,7 +8,8 @@ router.get('/:author',(req,res)=>{
     console.log(req.params.author);
     OpiniateUsersModel.findOne({name:req.params.author},(err,result)=>{
         console.log(result.incoming);
-        res.send(result.incoming);
+        const ans={followers:result.followers.length,following:result.following.length}
+        res.send(ans);
     });
 });
 module.exports = router;

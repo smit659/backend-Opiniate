@@ -8,6 +8,8 @@ const userOpinionsRoute = require('./routes/userOpinions');
 const giveOpinionListRoute = require('./routes/giveOpinionList');
 const incomingRoute = require('./routes/incoming');
 const getIncomingRequestRoute = require('./routes/getIncomingRequest')
+const acceptFollowRoute = require('./routes/acceptFollow')
+const getFollowersFollowingRoute = require('./routes/getFollowersFollowing')
 require('./passport');
 //require('dotenv').config();
 const cookieSession = require('cookie-session');
@@ -41,7 +43,8 @@ app.use("/userOpinions",userOpinionsRoute);
 app.use("/giveOpinionList",giveOpinionListRoute);
 app.use("/incoming",incomingRoute);
 app.use("/getIncomingRequest/",getIncomingRequestRoute);
-
+app.use("/acceptFollow", acceptFollowRoute);
+app.use("/getFollowersFollowing/", getFollowersFollowingRoute);
 
 const PORT = 3001;
 app.listen(PORT,console.log(`server is listening on port ${PORT}`));
