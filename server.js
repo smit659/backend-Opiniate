@@ -9,6 +9,7 @@ const giveOpinionListRoute = require('./routes/giveOpinionList');
 const incomingRoute = require('./routes/incoming');
 const getIncomingRequestRoute = require('./routes/getIncomingRequest')
 const acceptFollowRoute = require('./routes/acceptFollow')
+const rejectFollowRoute = require('./routes/rejectFollow')
 const getFollowersFollowingRoute = require('./routes/getFollowersFollowing')
 require('./passport');
 //require('dotenv').config();
@@ -44,6 +45,7 @@ app.use("/giveOpinionList",giveOpinionListRoute);
 app.use("/incoming",incomingRoute);
 app.use("/getIncomingRequest/",getIncomingRequestRoute);
 app.use("/acceptFollow", acceptFollowRoute);
+app.use("/rejectFollow", rejectFollowRoute);
 app.use("/getFollowersFollowing/", getFollowersFollowingRoute);
 
 const PORT = 3001;
