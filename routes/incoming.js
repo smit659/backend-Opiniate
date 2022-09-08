@@ -21,6 +21,8 @@ router.post('/',(req,res)=>{
                     new:true
                 }).exec((err,result)=>{
                     if(err){return res.status(422).json({error:err})}
+                    else
+                    res.send("Correct");
             });
             }
     });

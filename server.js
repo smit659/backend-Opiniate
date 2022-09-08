@@ -11,6 +11,8 @@ const getIncomingRequestRoute = require('./routes/getIncomingRequest')
 const acceptFollowRoute = require('./routes/acceptFollow')
 const rejectFollowRoute = require('./routes/rejectFollow')
 const getFollowersFollowingRoute = require('./routes/getFollowersFollowing')
+const unfollowRoute = require('./routes/unfollow')
+const unrequestedRoute = require('./routes/unrequested')
 require('./passport');
 //require('dotenv').config();
 const cookieSession = require('cookie-session');
@@ -46,7 +48,8 @@ app.use("/incoming",incomingRoute);
 app.use("/getIncomingRequest/",getIncomingRequestRoute);
 app.use("/acceptFollow", acceptFollowRoute);
 app.use("/rejectFollow", rejectFollowRoute);
+app.use("/unfollow", unfollowRoute);
 app.use("/getFollowersFollowing/", getFollowersFollowingRoute);
-
+app.use("/unrequested", unrequestedRoute);
 const PORT = 3001;
 app.listen(PORT,console.log(`server is listening on port ${PORT}`));
