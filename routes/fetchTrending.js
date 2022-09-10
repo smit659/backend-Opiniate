@@ -11,12 +11,42 @@ opinions.find({},(err, result)=>{
     else
    {
     //  console.log(result)
-    let sentences="";
+    let ans="";
     let hashmap=new Map();
-    result.map((item,i)=>sentences+=item.opinion+" ");
-    var arr=sentences.split(" ");
-    console.log(arr);
-     res.send(result);
+    result.map((item,i)=>{
+       var sentences;
+       sentences=(item.opinion).split(" ")
+      
+      sentences.map((item,i)=>
+      {
+        if(item.startsWith("#"))
+        {
+          if(hashmap[item])
+          {
+            hashmap[item]++;
+          }
+          else
+          hashmap[item] =1; 
+        }
+      }
+      )
+      
+  });
+ 
+  var array = [];
+  for (var key in hashmap) {
+  array.push({
+    name: key,
+    value: hashmap[key]
+  });
+    }
+    var sorted = array.sort(function(a, b) {
+      return (a.value < b.value) ? 1 : ((b.value < a.value) ? -1 : 0)
+      });
+ 
+    console.log(array);
+    
+     res.send(array.slice(0, 10));
    }
 });
 });

@@ -12,6 +12,7 @@ const acceptFollowRoute = require('./routes/acceptFollow')
 const rejectFollowRoute = require('./routes/rejectFollow')
 const getFollowersFollowingRoute = require('./routes/getFollowersFollowing')
 const unfollowRoute = require('./routes/unfollow')
+const fetchtrendingRoute = require('./routes/fetchTrending')    
 const unrequestedRoute = require('./routes/unrequested')
 require('./passport');
 //require('dotenv').config();
@@ -49,6 +50,7 @@ app.use("/getIncomingRequest/",getIncomingRequestRoute);
 app.use("/acceptFollow", acceptFollowRoute);
 app.use("/rejectFollow", rejectFollowRoute);
 app.use("/unfollow", unfollowRoute);
+app.use("/fetchtrending", fetchtrendingRoute);
 app.use("/getFollowersFollowing/", getFollowersFollowingRoute);
 app.use("/unrequested", unrequestedRoute);
 const PORT = 3001;
