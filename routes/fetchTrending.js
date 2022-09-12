@@ -10,7 +10,7 @@ opinions.find({},(err, result)=>{
 
     else
    {
-     console.log(result[0]._id)
+    //  console.log(result[0]._id)
     let ans="";
     let hashmap=new Map();
     var hashmap2=new Map();
@@ -33,7 +33,7 @@ opinions.find({},(err, result)=>{
          {
           hashmap[items] =1; 
           var arrOfid=[];
-          console.log(item._id)
+          // console.log(item._id)
           arrOfid.push(item._id);
           hashmap2.set(items,arrOfid);
           }
@@ -52,7 +52,7 @@ opinions.find({},(err, result)=>{
         value: value
       });
   });
-  console.log(array2);
+  // console.log(array2);
   for (var key in hashmap) {
   array.push({
     name: key,

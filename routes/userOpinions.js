@@ -19,7 +19,7 @@ router.post("/", (req,res) => {
         else
         {
             res.send('Success');
-            console.log(result);
+            // console.log(result); 
         }
        });
 
