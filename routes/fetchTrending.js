@@ -10,23 +10,33 @@ opinions.find({},(err, result)=>{
 
     else
    {
-    //  console.log(result)
+     console.log(result[0]._id)
     let ans="";
     let hashmap=new Map();
-    result.map((item,i)=>{
+    var hashmap2=new Map();
+     result.map((item,i)=>{
        var sentences;
        sentences=(item.opinion).split(" ")
       
-      sentences.map((item,i)=>
+      sentences.map((items,i)=>
       {
-        if(item.startsWith("#"))
+        if(items.startsWith("#"))
         {
-          if(hashmap[item])
+          if(hashmap[items])
           {
-            hashmap[item]++;
+            hashmap[items]++;
+            var arrOfid=hashmap2.get(items);
+            arrOfid.push(item._id);
+            hashmap2.set(items,arrOfid);
           }
           else
-          hashmap[item] =1; 
+         {
+          hashmap[items] =1; 
+          var arrOfid=[];
+          console.log(item._id)
+          arrOfid.push(item._id);
+          hashmap2.set(items,arrOfid);
+          }
         }
       }
       )
@@ -34,6 +44,15 @@ opinions.find({},(err, result)=>{
   });
  
   var array = [];
+  var array2 = [];
+  
+  hashmap2.forEach(function(value,key){
+    array2.push({
+        name: key,
+        value: value
+      });
+  });
+  console.log(array2);
   for (var key in hashmap) {
   array.push({
     name: key,
@@ -44,9 +63,9 @@ opinions.find({},(err, result)=>{
       return (a.value < b.value) ? 1 : ((b.value < a.value) ? -1 : 0)
       });
  
-    console.log(array);
-    
-     res.send(array.slice(0, 10));
+    // console.log(hashmap2);
+      
+     res.send({array:array.slice(0,10), hashmap2:array2});
    }
 });
 });
