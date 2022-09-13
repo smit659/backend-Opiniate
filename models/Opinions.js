@@ -4,6 +4,7 @@ const OpiniateDb=require('../configureDb/opinionDb')
 
 const schema = new mongoose.Schema({
     author: String,
+   
     opinion:   String,
     comments: [{ body: String, date: Date }],
     likes:[String],
