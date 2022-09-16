@@ -15,6 +15,7 @@ const unfollowRoute = require('./routes/unfollow')
 const fetchtrendingRoute = require('./routes/fetchTrending')    
 const unrequestedRoute = require('./routes/unrequested')
 const giveTrendOpinionListRoute = require('./routes/giveTrendOpinionList')
+const getUserDetailsRoute = require('./routes/getUserDetails')
 require('./passport');
 //require('dotenv').config();
 const cookieSession = require('cookie-session');
@@ -55,5 +56,6 @@ app.use("/fetchtrending", fetchtrendingRoute);
 app.use("/getFollowersFollowing/", getFollowersFollowingRoute);
 app.use("/unrequested", unrequestedRoute);
 app.use("/giveTrendOpinionList", giveTrendOpinionListRoute)
+app.use("/getUserDetails",getUserDetailsRoute)
 const PORT = 3001;
 app.listen(PORT,console.log(`server is listening on port ${PORT}`));
