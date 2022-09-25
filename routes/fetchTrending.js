@@ -22,7 +22,7 @@ trends.find({},(err, result)=>{
     }
     result.sort( compare );
 
-    console.log(result);
+    // console.log(result);
     res.send(result);
    }
 });

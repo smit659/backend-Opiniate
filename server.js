@@ -2,6 +2,7 @@ const express = require('express');
 const passport = require('passport');
 const cors = require('cors');
 const authRoute = require('./routes/auth');
+const opinions =require("./models/Opinions");
 const signupRoute = require('./routes/signup');
 const signinRoute = require('./routes/signin');
 const userOpinionsRoute = require('./routes/userOpinions');
@@ -42,6 +43,7 @@ app.use(cors(
     }
 ));
 
+app.get('/', function(req, res) {res.send('oj')})
 app.use("/auth", authRoute);
 app.use("/signup", signupRoute);
 app.use("/signin", signinRoute);
@@ -58,4 +60,45 @@ app.use("/unrequested", unrequestedRoute);
 app.use("/giveTrendOpinionList", giveTrendOpinionListRoute)
 app.use("/getUserDetails",getUserDetailsRoute)
 const PORT = 3001;
-app.listen(PORT,console.log(`server is listening on port ${PORT}`));
+
+
+function sortByProperty(property){  
+    return function(a,b){  
+       if(a[property] < b[property])  
+          return 1;  
+       else if(a[property] > b[property])  
+          return -1;  
+   
+       return 0;  
+    }  
+ }
+
+const serverS=app.listen(PORT,console.log(`server is listening on port ${PORT}`));
+try{
+let io=require('socket.io')(serverS);
+io.on('connection', (socket)=>{
+    console.log(socket+" connected");
+
+    socket.on("I sent",(Data)=>{
+        console.log(Data);
+      
+            opinions.find((err, result)=>{
+               
+                if(err)
+                console.log(err);
+            
+                else
+               {
+                result.sort(sortByProperty("date"));
+                socket.broadcast.emit('every one rerender',{mes:result});
+               }
+            });
+            
+       
+    });
+   
+    
+
+    });
+}
+catch(e){console.log(e);}
