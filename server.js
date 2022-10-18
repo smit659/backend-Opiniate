@@ -13,6 +13,7 @@ const acceptFollowRoute = require('./routes/acceptFollow')
 const rejectFollowRoute = require('./routes/rejectFollow')
 const getFollowersFollowingRoute = require('./routes/getFollowersFollowing')
 const unfollowRoute = require('./routes/unfollow')
+const editBioRoute = require('./routes/editBio')
 const fetchtrendingRoute = require('./routes/fetchTrending')    
 const unrequestedRoute = require('./routes/unrequested')
 const giveTrendOpinionListRoute = require('./routes/giveTrendOpinionList')
@@ -59,6 +60,7 @@ app.use("/getFollowersFollowing/", getFollowersFollowingRoute);
 app.use("/unrequested", unrequestedRoute);
 app.use("/giveTrendOpinionList", giveTrendOpinionListRoute)
 app.use("/getUserDetails",getUserDetailsRoute)
+app.use("/editBio",editBioRoute);
 const PORT = 3001;
 
 
@@ -78,6 +80,11 @@ try{
 let io=require('socket.io')(serverS);
 io.on('connection', (socket)=>{
     console.log(socket+" connected");
+
+    socket.on('requested',(datas)=>{
+        console.log(datas.author)
+        socket.broadcast.emit(datas.author,{'change':datas})
+    });
 
     socket.on("I sent",(Data)=>{
         console.log(Data);
