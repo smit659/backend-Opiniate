@@ -2,18 +2,10 @@ const express = require('express');
 const router = express.Router();
 const   opinions =require("../models/Opinions");
 
-router.get('/', function(req, res){
-opinions.find((err, result)=>{
-   
-    if(err)
-    console.log(err);
-
-    else
-   {
-
-     res.send(result);
-   }
-});
+router.get('/', async function(req, res){
+let result= await opinions.find({}).populate('author');
+// console.log(result[result.length-1]);
+res.send(result);
 });
 
 module.exports = router;

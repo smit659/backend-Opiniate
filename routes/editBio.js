@@ -15,32 +15,31 @@ cloudinary.config({
 });
 const storage = multer.diskStorage({});
 
-const upload=multer({storage:storage,limits:{fieldSize:10*1024*1024},fileFilter:(req,file,cb)=>{
+const upload=multer(
+    {storage:storage,limits:{fieldSize:10*1024*1024},fileFilter:(req,file,cb)=>{
     let ext=path.extname(file.originalname);
-    console.log('====================================');
-    console.log(ext);
-    console.log('====================================');
-   
     cb(null,true);
-}});
+    }});
 
-router.post('/',[upload.single('imager')],async(req,res)=>{
-    console.log('7777777777777777777777777777777777777')
-    console.log(req.body.to);
+router.post('/',[upload.single('imager')],
+  async(req,res) => {
+  console.log(req.body.to);
   let result=null;
-    if(req.file)
-    { result= await cloudinary.uploader.upload(req.file.path);}
-    // console.log(result);
-                OpiniateUsersModel.findOneAndUpdate({email:req.body.to},{
-                    avatar:result?result.secure_url:""
-            
-            
-                },function(err,result){
-                    if(err)console.log(err)
-                    else
-                    res.send("done")
-                }
-            );
+   
+  if(req.file)
+  { result= await cloudinary.uploader.upload(req.file.path);}
+    
+    OpiniateUsersModel.findOneAndUpdate({email:req.body.to},
+    {
+    avatar:result?result.secure_url:""
+    },function(err,result)
+    {
+   if(err) 
+   console.log(err)
+   else
+   res.send("done")
+    }
+);
             
    
     

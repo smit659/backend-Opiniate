@@ -2,7 +2,7 @@ const opinions =require("../models/Opinions");
 const trends   = require("../models/trend")
 const express  = require('express');
 const router   = express.Router();
-
+const  OpiniateUsersModel =require("../models/OpiniateUsers");
 
 router.post("/", (req,res) => {
     console.log(req.body);
@@ -25,11 +25,16 @@ router.post("/", (req,res) => {
     })
     // console.log(hashmap)
     var oid = Date.now();
-    const doc=new opinions({
+    
+    OpiniateUsersModel.findOne({email:req.body.author},(err,results)=>{
+      if(results)
+      {
+      const doc=new opinions({
         oid:oid,
-       author: req.body.author,
-       opinion:req.body.opinion
-    });
+       author: results._id,
+       opinion:req.body.opinion,
+      //  avatar:req.body.avatar
+         });
 
         doc.save(function(err,result){
         if(err)
@@ -78,6 +83,11 @@ router.post("/", (req,res) => {
             // console.log(result); 
         }
        });
+      }
+      else
+      res.sendStatus(404);
+
+      })
 
    
 });
