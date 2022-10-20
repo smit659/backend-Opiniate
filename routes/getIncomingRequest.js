@@ -9,7 +9,8 @@ router.get('/:author',(req,res)=>{
     OpiniateUsersModel.findOne({name:req.params.author},(err,result)=>{
         // if(err) {console.log(err);}
         console.log(result.incoming);
-        res.send(result.incoming);
+        const obj={incoming:result.incoming,avatar:result.avatar}
+        res.send(obj);
     });
 });
 module.exports = router;
