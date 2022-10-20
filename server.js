@@ -18,6 +18,8 @@ const fetchtrendingRoute = require('./routes/fetchTrending')
 const unrequestedRoute = require('./routes/unrequested')
 const giveTrendOpinionListRoute = require('./routes/giveTrendOpinionList')
 const getUserDetailsRoute = require('./routes/getUserDetails')
+const postCommentRoute    =  require('./routes/postComment')
+const getCommentRoute = require('./routes/getComment')
 require('./passport');
 //require('dotenv').config();
 const cookieSession = require('cookie-session');
@@ -61,6 +63,8 @@ app.use("/unrequested", unrequestedRoute);
 app.use("/giveTrendOpinionList", giveTrendOpinionListRoute)
 app.use("/getUserDetails",getUserDetailsRoute)
 app.use("/editBio",editBioRoute);
+app.use("/postComment",postCommentRoute);
+app.use("/getComment",getCommentRoute);
 const PORT = 3001;
 
 
