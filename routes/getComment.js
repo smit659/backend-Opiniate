@@ -9,6 +9,9 @@ router.get('/:id',async (req,res)=>{
     console.log("=====")
     console.log(req.params.id);
     let result= await opinions.findOne({_id:req.params.id}).populate('comments')
+    .populate('comments.author')
+
+  
     console.log(result)
     res.send(result)
 });

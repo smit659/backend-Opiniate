@@ -24,6 +24,10 @@ router.post("/", (req,res) => {
       }
     })
     // console.log(hashmap)
+
+
+
+
     var oid = Date.now();
     
     OpiniateUsersModel.findOne({email:req.body.from},(err,results)=>{
@@ -31,7 +35,7 @@ router.post("/", (req,res) => {
       {
       const doc=new commentss({
         oid:oid,
-       author: results._id,
+       author: {email:results.email,avatar:results.avatar},
        opinion:req.body.comment.comment,
        
       //  avatar:req.body.avatar
@@ -47,7 +51,38 @@ router.post("/", (req,res) => {
             console.log("ssssssssss ");
 
             // trending starts
-           
+           for(var key in hashmap)
+           {
+                trends.findOne({trend:key},(err,ans)=>{
+                        if(ans)
+                        {
+                            trends.findOneAndUpdate({trend:key},{
+    
+                                $push:{opinion:result._id},
+                        
+                        
+                            },{
+                                new:true
+                            }).exec((err,ans)=>{
+                                if(err){return res.status(422).json({error:err})}
+                                
+                                // res.send("Correct");
+                        });
+                        }
+                        else
+                        {
+                            const doc=new trends({
+                                
+                            trend:key,
+                            opinion:result._id
+
+                            });
+                            doc.save();
+                            
+                        }
+
+                });
+           }
         //    trending ends
 
 
@@ -65,7 +100,8 @@ router.post("/", (req,res) => {
                 },{
                     new:true
                 }).exec((err,result)=>{
-                    if(err){console.log(err) ;res.status(422).json({error:err})}
+                    if(err){console.log(err) ;
+                      res.status(422).json({error:err})}
                     else
                     res.send("Correct");
             });

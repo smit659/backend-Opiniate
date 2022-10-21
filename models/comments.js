@@ -4,7 +4,7 @@ const opiniateUsers = require('./OpiniateUsers')
 // const opinions = require('./')
 const { Schema } = mongoose;
 const schema = new mongoose.Schema({
-    author:  { type: Schema.Types.ObjectId, ref: opiniateUsers },
+    author:  { },
     // avatar:String,
     opinion:   String,
     comments: [{}],
