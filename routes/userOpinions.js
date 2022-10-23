@@ -33,7 +33,7 @@ router.post("/", (req,res) => {
         oid:oid,
        author: results._id,
        opinion:req.body.opinion,
-      //  avatar:req.body.avatar
+      //  avatar:req.body.avatar  
          });
 
         doc.save(function(err,result){

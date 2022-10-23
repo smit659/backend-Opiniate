@@ -51,44 +51,13 @@ router.post("/", (req,res) => {
             console.log("ssssssssss ");
 
             // trending starts
-           for(var key in hashmap)
-           {
-                trends.findOne({trend:key},(err,ans)=>{
-                        if(ans)
-                        {
-                            trends.findOneAndUpdate({trend:key},{
-    
-                                $push:{opinion:result._id},
-                        
-                        
-                            },{
-                                new:true
-                            }).exec((err,ans)=>{
-                                if(err){return res.status(422).json({error:err})}
-                                
-                                // res.send("Correct");
-                        });
-                        }
-                        else
-                        {
-                            const doc=new trends({
-                                
-                            trend:key,
-                            opinion:result._id
-
-                            });
-                            doc.save();
-                            
-                        }
-
-                });
-           }
+         
         //    trending ends
 
 
 
         // comment starts
-
+          console.log(req.body.id)
 
      
               
