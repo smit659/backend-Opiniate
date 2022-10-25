@@ -23,9 +23,18 @@ const upload=multer(
 
 router.post('/',[upload.single('imager')],
   async(req,res) => {
-  console.log(req.body.to);
+  console.log(req.body);
   let result=null;
-   
+  OpiniateUsersModel.findOneAndUpdate({email:req.body.to},
+    {
+    bio:req.body.bio
+    },function(err,result)
+    {
+   if(err) 
+   console.log(err)
+     }
+);
+
   if(req.file)
   { result= await cloudinary.uploader.upload(req.file.path);}
     
