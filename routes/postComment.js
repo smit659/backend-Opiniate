@@ -35,7 +35,7 @@ router.post("/", (req,res) => {
       {
       const doc=new commentss({
         oid:oid,
-       author: {email:results.email,avatar:results.avatar},
+       author: results._id,
        opinion:req.body.comment.comment,
        
       //  avatar:req.body.avatar
