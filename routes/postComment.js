@@ -3,7 +3,7 @@ const trends   = require("../models/trend")
 const express  = require('express');
 const router   = express.Router();
 const  OpiniateUsersModel =require("../models/OpiniateUsers");
-const commentss = require("../models/comments")
+const commentss = require("../models/Opinions")
 router.post("/", (req,res) => {
     console.log(req.body);
     let hashmap=new Map();
@@ -35,6 +35,7 @@ router.post("/", (req,res) => {
       {
       const doc=new commentss({
         oid:oid,
+        flag:true,
        author: results._id,
        opinion:req.body.comment.comment,
        

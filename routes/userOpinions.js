@@ -31,6 +31,7 @@ router.post("/", (req,res) => {
       {
       const doc=new opinions({
         oid:oid,
+        flag:false,
        author: results._id,
        opinion:req.body.opinion,
       //  avatar:req.body.avatar  

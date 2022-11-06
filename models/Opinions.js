@@ -6,9 +6,11 @@ const comments=require('./comments')
 const { Schema } = mongoose;
 const schema = new mongoose.Schema({
     author:  { type: Schema.Types.ObjectId, ref: opiniateUsers },
+    authorInfoEnglish:{},
     // avatar:String,
+    flag:Boolean,
     opinion:   String,
-    comments: [{ type: Schema.Types.ObjectId,ref: comments}],
+    comments: [{}],
     likes:[String],
     date: { type: Date, default: Date.now },
     });

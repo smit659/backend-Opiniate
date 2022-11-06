@@ -6,39 +6,85 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-router.get('/:id',async (req,res)=>{
+router.get('/:id', (req,res)=>{
+    let resultArr=[];
     console.log("=====")
     console.log(req.params.id);
-    let result= await opinions.findOne({_id:req.params.id}).populate('comments')
-   
-    if(result.comments){
-        
+    opinions.findOne({_id:req.params.id})
+    .then((result)=>{
+
+    
+    
+         if(result.comments){
+           
         const firstPromise=new Promise((resolve,reject)=>{
             var c=0;
-            result.comments.forEach(async function(comment,i){
-                // console.log(comment)
-                
-             let found=await opiniateUsers.findOne({_id:comment.author});
-             if(found)
-             {
-                c++;
-                comment.author=found;
-                if(c==result.comments.length)
-                resolve("Task completed ! ")
-             }
-
-
+            result.comments.map( function(comment,i)
+            {
+                    
+                 opinions.findOne({_id:comment._id}).then( (fd)=>{
+                  
+                        c++;
+                  
+                      
+                        // console.log(fd)
+                        resultArr.push(fd);
+                        if(c==result.comments.length)
+                        {
+                        resolve("Task completed ! ");
+                        result.comments=resultArr;
+                        
+                        }
+                       
+                        
+                    }).catch((err)=>{console.log(err)})
+             
+            
             
     //   
-    })
+           
+             })
+             
    
         });
 
-        firstPromise.then((ress)=>{    res.send(result);}).catch((err)=>{console.log(err)})
+        firstPromise.then((ress)=>{ 
+            let itr=0;
+            let finalResult =result
+            finalResult.comments.map((comment,i)=>{
+               
+               
+                opiniateUsers.findById(comment.author).then((found)=>
+                {
+                    itr++;
+                  
+                    comment.authorInfoEnglish=found;
+                     
+                    if(itr==finalResult.comments.length)
+                    {
+                        comment.authorInfoEnglish=found;
+                        console.log(finalResult)
+                       
+                     
+                        res.send(finalResult);
+                    }
+                       
+                        
+                       
+                    
+                })
+                .catch((err)=>{console.log(err)})
+               
+                  
+            });
+           
+           }).catch((err)=>{console.log(err)})
        
 }
 
-  
+
+
+})
     // console.log(result.comments[0].author)
 
 });
