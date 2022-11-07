@@ -58,11 +58,11 @@ router.post("/", (req,res) => {
 
 
         // comment starts
-          console.log(req.body.id)
+          console.log(req.body.ip)
 
      
               
-                opinions.findOneAndUpdate({_id:req.body.id},{
+                opinions.findOneAndUpdate({_id:req.body.ip},{
     
                     $push:{comments:result._id},
             
