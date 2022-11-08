@@ -10,6 +10,7 @@ const giveOpinionListRoute = require('./routes/giveOpinionList');
 const incomingRoute = require('./routes/incoming');
 const getIncomingRequestRoute = require('./routes/getIncomingRequest')
 const acceptFollowRoute = require('./routes/acceptFollow')
+const publicFollowRoute = require('./routes/publicFollow')
 const rejectFollowRoute = require('./routes/rejectFollow')
 const getFollowersFollowingRoute = require('./routes/getFollowersFollowing')
 const unfollowRoute = require('./routes/unfollow')
@@ -21,6 +22,7 @@ const getUserDetailsRoute = require('./routes/getUserDetails')
 const postCommentRoute    =  require('./routes/postComment')
 const getCommentRoute = require('./routes/getComment')
 const likeRoute = require('./routes/like')
+
 const getSugesstionRoute = require('./routes/getSugesstion')
 const dislikeRoute = require('./routes/dislike')
 const getMyOpinionsRoute = require('./routes/getMyOpinions')
@@ -60,6 +62,7 @@ app.use("/giveOpinionList",giveOpinionListRoute);
 app.use("/incoming",incomingRoute);
 app.use("/getIncomingRequest/",getIncomingRequestRoute);
 app.use("/acceptFollow", acceptFollowRoute);
+app.use("/publicFollow", publicFollowRoute);
 app.use("/rejectFollow", rejectFollowRoute);
 app.use("/unfollow", unfollowRoute);
 app.use("/fetchtrending", fetchtrendingRoute);

@@ -4,8 +4,8 @@ const OpiniateDb=require('../configureDb/opinionDb')
 
 const schema = new mongoose.Schema({
     name:{type:String},
-    email:{type:String},
-    private:{type:Boolean},
+    email:{type:String},    
+    private:{type:Boolean,default:true},
     password:{type:String},
     avatar:{type:String},
     location:{type:String},

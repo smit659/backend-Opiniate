@@ -25,22 +25,16 @@ router.post('/',[upload.single('imager')],
   async(req,res) => {
   console.log(req.body);
   let result=null;
-  OpiniateUsersModel.findOneAndUpdate({email:req.body.to},
-    {
-    bio:req.body.bio
-    },function(err,result)
-    {
-   if(err) 
-   console.log(err)
-     }
-);
+  
 
   if(req.file)
-  { result= await cloudinary.uploader.upload(req.file.path);}
+  { result= await cloudinary.uploader.upload(req.file.path);
     
     OpiniateUsersModel.findOneAndUpdate({email:req.body.to},
     {
-    avatar:result?result.secure_url:""
+    avatar:result?result.secure_url:"",
+    bio:req.body.bio,
+    private:req.body.pri
     },function(err,result)
     {
    if(err) 
@@ -49,6 +43,23 @@ router.post('/',[upload.single('imager')],
    res.send("done")
     }
 );
+  }
+  else
+  {
+    OpiniateUsersModel.findOneAndUpdate({email:req.body.to},
+      {
+      avatar:req.body.avatar,
+       bio:req.body.bio,
+      private:req.body.pri
+      },function(err,result)
+      {
+     if(err) 
+     console.log(err)
+     else
+     res.send("done")
+      }
+  );
+  }
             
    
     

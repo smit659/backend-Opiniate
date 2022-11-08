@@ -10,7 +10,7 @@ router.get('/:author',(req,res)=>{
        
         if(result)
         {
-        const ans={followersNumber:result.followers.length,followingNumber:result.following.length,followers:result.followers,following:result.following,avatar:result.avatar,bio:result.bio,incoming:result.incoming}
+        const ans={private:result.private,followersNumber:result.followers.length,followingNumber:result.following.length,followers:result.followers,following:result.following,avatar:result.avatar,bio:result.bio,incoming:result.incoming,email:result.email}
         console.log(ans)
         res.send(ans);
         }

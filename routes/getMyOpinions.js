@@ -16,7 +16,7 @@ router.get('/:email', async function(req, res){
         }
         itr++;
 
-        if(itr==result.length-1)
+        if(itr==result.length)
         {
             console.log('/////////');
             res.send(finalResult);
