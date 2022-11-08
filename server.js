@@ -21,7 +21,10 @@ const getUserDetailsRoute = require('./routes/getUserDetails')
 const postCommentRoute    =  require('./routes/postComment')
 const getCommentRoute = require('./routes/getComment')
 const likeRoute = require('./routes/like')
+const getSugesstionRoute = require('./routes/getSugesstion')
 const dislikeRoute = require('./routes/dislike')
+const getMyOpinionsRoute = require('./routes/getMyOpinions')
+const getMyLikedOpinionRoute = require('./routes/getMyLikedOpinion')
 require('./passport');
 //require('dotenv').config();
 const cookieSession = require('cookie-session');
@@ -69,6 +72,9 @@ app.use("/postComment",postCommentRoute);
 app.use("/getComment",getCommentRoute);
 app.use("/like",likeRoute);
 app.use("/dislike",dislikeRoute);
+app.use("/getSuggestions",getSugesstionRoute);
+app.use("/getMyOpinions",getMyOpinionsRoute);
+app.use("/getMyLikedOpinion",getMyLikedOpinionRoute);
 const PORT = 3001;
 
 

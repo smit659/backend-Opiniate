@@ -17,11 +17,13 @@ router.get('/:email', async function(req, res){
             
             if(following.includes(elem.author.email))
             {
+                
                 finalResult.push(elem);
+             
             }
 
         });
-        // console.log(resulted);
+        console.log(finalResult);
         res.send(finalResult);
         }
         else
