@@ -45,6 +45,8 @@ router.post("/", (req,res) => {
         else
         {
             console.log(result._id);
+            if(results.private==false)
+            {
            for(var key in hashmap)
            {
                 trends.findOne({trend:key},(err,ans)=>{
@@ -77,6 +79,7 @@ router.post("/", (req,res) => {
 
                 });
            }
+          }
 
         
 
