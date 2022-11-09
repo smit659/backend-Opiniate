@@ -22,7 +22,7 @@ const getUserDetailsRoute = require('./routes/getUserDetails')
 const postCommentRoute    =  require('./routes/postComment')
 const getCommentRoute = require('./routes/getComment')
 const likeRoute = require('./routes/like')
-
+const getRecommendationRoute=require('./routes/getRecommendation')
 const getSugesstionRoute = require('./routes/getSugesstion')
 const dislikeRoute = require('./routes/dislike')
 const getMyOpinionsRoute = require('./routes/getMyOpinions')
@@ -78,6 +78,7 @@ app.use("/dislike",dislikeRoute);
 app.use("/getSuggestions",getSugesstionRoute);
 app.use("/getMyOpinions",getMyOpinionsRoute);
 app.use("/getMyLikedOpinion",getMyLikedOpinionRoute);
+app.use("/getRecommendation", getRecommendationRoute)
 const PORT = 3001;
 
 
