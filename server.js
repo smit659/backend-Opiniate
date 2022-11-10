@@ -47,7 +47,7 @@ app.use(passport.session());
 app.use(express.json());
 app.use(cors(
     {
-        origin: "https://smit659.github.io/frontend-opiniate/",
+        origin: "http://localhost:3000",
         methods: "GET,POST,PUT,DELETE",
         credentials: true,
     }
