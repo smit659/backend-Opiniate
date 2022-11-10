@@ -1,3 +1,4 @@
+require('dotenv').config();
 const  OpiniateUsersModel =require("../models/OpiniateUsers");
 const express = require('express');
 const router = express.Router();
@@ -9,9 +10,9 @@ const path=require('path');
 
 
 cloudinary.config({ 
-    cloud_name:'dh8cmssrz',
-    api_key:266848882552695 , 
-    api_secret: 'PLXWe3x1QH4BcjcXuojisXMyFJ8'
+    cloud_name:process.env.cloud_name,
+    api_key:process.env.api_key , 
+    api_secret: process.env.api_secret
 });
 const storage = multer.diskStorage({});
 

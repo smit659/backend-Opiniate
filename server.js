@@ -47,7 +47,7 @@ app.use(passport.session());
 app.use(express.json());
 app.use(cors(
     {
-        origin: "http://localhost:3000",
+        origin: "*",
         methods: "GET,POST,PUT,DELETE",
         credentials: true,
     }
@@ -93,7 +93,7 @@ function sortByProperty(property){
     }  
  }
 
-const serverS=app.listen(process.env.PORT,console.log(`server is listening on port ${PORT}`));
+const serverS=app.listen(3001,console.log(`server is listening on port ${PORT}`));
 try{
 let io=require('socket.io')(serverS);
 io.on('connection', (socket)=>{

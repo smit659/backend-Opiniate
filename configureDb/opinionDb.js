@@ -1,7 +1,9 @@
+
+require('dotenv').config();
 const mongoose = require('mongoose');
 
 const OpiniateDb=mongoose.createConnection
-('mongodb+srv://smit-admin:555admin@cluster0.12u2y.mongodb.net/Opiniate',
+(process.env.MONGOURI,
 {useNewUrlParser:true,useUnifiedTopology:true},
 ()=>console.log('successfully connected to db'));
 
