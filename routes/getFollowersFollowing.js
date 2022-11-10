@@ -11,11 +11,11 @@ router.get('/:author',(req,res)=>{
         if(result)
         {
         const ans={private:result.private,followersNumber:result.followers.length,followingNumber:result.following.length,followers:result.followers,following:result.following,avatar:result.avatar,bio:result.bio,incoming:result.incoming,email:result.email}
-        console.log(ans)
+        console.log(ans+" is")
         res.send(ans);
         }
         else
-        console.log(err)
+        res.sendStatus(404)
     });
 });
 module.exports = router;

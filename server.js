@@ -53,6 +53,15 @@ app.use(cors(
     }
 ));
 
+
+
+// app.get("/logout", (req,res) => {
+//     console.log('hello');
+//     req.logout();
+//     console.log('world');
+//     res.redirect("http://localhost:3000/");
+// });
+
 app.get('/', function(req, res) {res.send('oj')})
 app.use("/auth", authRoute);
 app.use("/signup", signupRoute);
