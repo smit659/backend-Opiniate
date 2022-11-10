@@ -7,7 +7,7 @@ router.get('/', function(req, res){
 trends.find({},(err, result)=>{
    
     if(err)
-    console.log(err);
+   res.sendStatus(404)
 
     else
    {
