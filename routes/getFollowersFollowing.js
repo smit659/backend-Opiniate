@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 router.get('/:author',(req,res)=>{
-    console.log(req.params.author +" s");
+    
     OpiniateUsersModel.findOne({email:req.params.author},(err,result)=>{
        
         if(result)
