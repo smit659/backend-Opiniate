@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 
 router.get('/:author',(req,res)=>{
     console.log(req.params.author);
-    OpiniateUsersModel.findOne({name:req.params.author},(err,result)=>{
+    OpiniateUsersModel.findOne({email:req.params.author},(err,result)=>{
         // if(err) {console.log(err);}
         if(result){
         console.log(result.incoming);
