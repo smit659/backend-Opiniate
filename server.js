@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const passport = require('passport');
 const cors = require('cors');
@@ -92,8 +93,8 @@ function sortByProperty(property){
        return 0;  
     }  
  }
-
-const serverS=app.listen(3001,console.log(`server is listening on port ${PORT}`));
+const port=3001|process.env.PORT
+const serverS=app.listen(port,console.log(`server is listening on port ${PORT}`));
 try{
 let io=require('socket.io')(serverS);
 io.on('connection', (socket)=>{
