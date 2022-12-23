@@ -23,7 +23,7 @@ router.post("/", (req,res) => {
         }
       }
     })
-    // console.log(hashmap)
+    console.log(hashmap)
     var oid = Date.now();
     
     OpiniateUsersModel.findOne({email:req.body.author},(err,results)=>{
@@ -47,11 +47,12 @@ router.post("/", (req,res) => {
             console.log(result._id);
             if(results.private==false)
             {
-           for(var key in hashmap)
-           {
-                trends.findOne({trend:key},(err,ans)=>{
+           for(let key in hashmap)
+            {
+                trends.findOne({trend:key},async (err,ans)=>{
                         if(ans)
                         {
+                          console.log('hey')
                             trends.findOneAndUpdate({trend:key},{
     
                                 $push:{opinion:result._id},
@@ -67,6 +68,7 @@ router.post("/", (req,res) => {
                         }
                         else
                         {
+                          console.log('hesy')
                             const doc=new trends({
                                 
                             trend:key,

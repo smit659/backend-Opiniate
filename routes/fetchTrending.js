@@ -20,6 +20,7 @@ trends.find({},(err, result)=>{
       }
       return 0;
     }
+    
     result.sort( compare );
 
     // console.log(result);
