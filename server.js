@@ -93,8 +93,8 @@ function sortByProperty(property){
        return 0;  
     }  
  }
-const port=3001|process.env.PORT
-const serverS=app.listen(port,console.log(`server is listening on port ${PORT}`));
+const port=3001
+const serverS=app.listen(process.env.PORT,console.log(`server is listening on port ${PORT}`));
 try{
 let io=require('socket.io')(serverS);
 io.on('connection', (socket)=>{
